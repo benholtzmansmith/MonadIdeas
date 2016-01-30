@@ -10,17 +10,17 @@ package ResultS
  *
  */
 
-trait ResultM[+A]{
+trait ResultS[+A]{
   def isFailure:Boolean
   def isSuccess:Boolean
   def get:A
-  def map[B](f: A => B):ResultM[B] = {
+  def map[B](f: A => B):ResultS[B] = {
     if (isFailure) {
       Failure(f(this.get))
     }
     else Success
   }
-  def flatMap[B](f: A => ResultM[B]):ResultM[B] = {
+  def flatMap[B](f: A => ResultS[B]):ResultS[B] = {
     if (isFailure){
       f(this.get)
     }
@@ -28,24 +28,24 @@ trait ResultM[+A]{
       Success
     }
   }
-  def filter(f: A => Boolean):ResultM[A] =
+  def filter(f: A => Boolean):ResultS[A] =
     if (isSuccess || f(this.get)) this else Success
 }
 
-case class Failure[+A](a:A) extends ResultM[A] {
+case class Failure[+A](a:A) extends ResultS[A] {
   def isFailure: Boolean = true
   def isSuccess:Boolean = false
   def get: A = a
 }
 
-case object Success extends ResultM[Nothing] {
+case object Success extends ResultS[Nothing] {
   def isFailure: Boolean = false
   def isSuccess:Boolean = true
   def get: Nothing = throw new Exception("Noting returned in success")
 }
 
-object ResultM{
-  def apply[A](a:A):ResultM[A] = Failure(a)
+object ResultS{
+  def apply[A](a:A):ResultS[A] = Failure(a)
 }
 
 
