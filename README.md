@@ -3,4 +3,4 @@ Monad ideas
 
 Experimenting with different custom Monad types.
 
-ResultM is a type designed to allow for fast-fail operations.
+(1) ResultS is a type designed to allow for fast-fail operations. Good for I/0 calls.
