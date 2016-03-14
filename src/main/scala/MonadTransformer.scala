@@ -21,7 +21,7 @@ object Problem {
 */
 }
 
-object OptionTrainsformer {
+object OptionTransformer {
   def asyncCall(id:String):Future[Option[Int]] = ???
 
   def anotherAsyncCall(t:Int):Future[Option[String]] = ???
