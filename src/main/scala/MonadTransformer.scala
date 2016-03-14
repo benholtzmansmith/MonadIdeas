@@ -1,4 +1,5 @@
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext
 
 
 object Problem {
@@ -22,6 +23,9 @@ object Problem {
 }
 
 object OptionTransformer {
+  import scala.concurrent.ExecutionContext.Implicits.global
+
+
   def asyncCall(id:String):Future[Option[Int]] = ???
 
   def anotherAsyncCall(t:Int):Future[Option[String]] = ???
@@ -36,8 +40,7 @@ object OptionTransformer {
   }
 
   case class FutureOption[+A](h:Future[Option[A]]) {
-    import scala.concurrent.ExecutionContext.Implicits.global
-    def flatMap[B](a: (A) => FutureOption[B]): FutureOption[B] = {
+    def flatMap[B](a: (A) => FutureOption[B])(implicit exec:ExecutionContext): FutureOption[B] = {
       val future = h.flatMap{
         case Some(x) => a(x).h
         case None => Future.successful(None)
