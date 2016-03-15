@@ -10,6 +10,11 @@ object Problem {
   * How can you enable using the for comprehension inside of AsyncCall with nested
   * monadic types.
   *
+  * First create a solution for this problem that presumes that the nested Monadic types
+  * will be Future[Option[A]].
+  *
+  * Second create a solution that is neutral to the outer Monadic type -> F[Option[A]].
+  *
   * def asyncCall(id:String):Future[Option[Int]] = ???
   *
   * def anotherAsyncCall(t:Int):Future[Option[String]] = ???
