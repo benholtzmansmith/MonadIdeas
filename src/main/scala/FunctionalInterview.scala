@@ -1,5 +1,5 @@
 
-object OptionMonad {
+object TypeSystemInterviewQuestions {
 
   //Fill in ???
   ////////////////////////////////////////////////////////////
