@@ -79,12 +79,16 @@ object TypeSystemInterviewQuestions {
     def map[B](f: (A) => B): Fut[B] = Fail[B]()
     def flatMap[B](f: (A) => Fut[B]): Fut[B] = Fail[B]()
   }
-
   val futOptInt:Fut[Opt[Int]] = ???
   val intToSTring:Int => Fut[Opt[String]] = ???
 
-  //Starting from futOptInt and using intToString, resolve ???
-
+  /**
+    *Have gone over how to use flatMap, how to build case classes that wrap data and provide methods like map and flatMap
+    * Now we are trying to build something a bit more complicated. Build a case class that provides a definition of flatMap
+    * for use to go apply a function that goes from an Int => Fut[Opt[Int]].
+    *
+    * */
   val futOptString:Fut[Opt[String]] = ???
+
 
 }
