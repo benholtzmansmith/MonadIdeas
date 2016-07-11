@@ -1,5 +1,5 @@
 
-object TypeSystemInterviewQuestions {
+object Questions {
 
   //Fill in ???
   ////////////////////////////////////////////////////////////
@@ -26,12 +26,20 @@ object TypeSystemInterviewQuestions {
   val somInt:Som[Int] = ???
   val iToS:Int => String = { i => i.toString }
   val sToL:String => List[String] = {s => List(s) }
-  //Using somInt go to somL
+  /**
+    * Using somInt apply some methods that take functions with signature of iToS
+    * and sToL to return a value that works with the requirements for somL.
+    * */
+
   val somL:Opt[List[String]] = ???
 
   ////(2)
   val somString:Opt[String] = ???
   val sToOptInt:String => Opt[Int] = ???
+  /**
+    * Using someString apply a method that takes a function with signature of sToOptInt
+    * to return a value that works with the requirements for optInt.
+    * */
   val optInt:Opt[Int] = ???
 
 
@@ -39,6 +47,10 @@ object TypeSystemInterviewQuestions {
   val somString2:Opt[String] = ???
   val sToOptInt2:String => Opt[Int] = ???
   val intToS:Int => (String, String) = ???
+  /**
+    * Using someString2 apply some methods that take a function with signature of sToOptInt2
+    * and intToS to return a value that works with the requirements for optInt2.
+    * */
   val optInt2:Opt[(String, String)] = ???
 
   ////(4)
@@ -83,12 +95,21 @@ object TypeSystemInterviewQuestions {
   val intToSTring:Int => Fut[Opt[String]] = ???
 
   /**
-    *Have gone over how to use flatMap, how to build case classes that wrap data and provide methods like map and flatMap
-    * Now we are trying to build something a bit more complicated. Build a case class that provides a definition of flatMap
-    * for use to go apply a function that goes from an Int => Fut[Opt[Int]].
-    *
+    * Starting with futOptInt,
+    * find away to apply the function intToSTring to futOptInt to
+    * solve the unimplemented value of futOptString below.
     * */
+
   val futOptString:Fut[Opt[String]] = ???
 
+  /**
+    * Can your solution be used inside of a flatMap to
+    * complete the example below? If not implement a solution that
+    * can be used within a flatMap.
+    * */
+
+  for {
+    f:Int <- futOptInt
+  } yield intToSTring(f)
 
 }
